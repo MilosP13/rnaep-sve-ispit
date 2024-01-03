@@ -7,7 +7,7 @@ from kafka import KafkaProducer
 producer = KafkaProducer(bootstrap_servers='localhost:9092', value_serializer=lambda v: json.dumps(v).encode('utf-8'));  
 
 
-api_key = '1b4bb4dda2969a28dd8c28abb2cceb6b'  
+api_key = '1b4bb4dda2969a28dd8c28abb2cceb6b'
 
 city = 'Smederevo'  
 
