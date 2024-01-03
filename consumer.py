@@ -12,6 +12,7 @@ for message in consumer:
     # Decode and load JSON data from the Kafka message
     aqi_data = message.value.decode('utf-8')
     aqi_data_json = json.loads(aqi_data)
+    print(aqi_data_json)
     
     # Send data to Node.js server
     response = requests.post(nodejs_server_url, json=aqi_data_json)

@@ -21,7 +21,7 @@ def calculate_aqi_pm25(pm2_5):
 
     for i in range(1, len(c)):
         if pm2_5 <= c[i]:
-            aqi = ((iaqi[i] - iaqi[i-1]) / (c[i] - c[i-1])) * (pm2_5 - c[i-1]) + iaqi[i-1] +100
+            aqi = ((iaqi[i] - iaqi[i-1]) / (c[i] - c[i-1])) * (pm2_5 - c[i-1]) + iaqi[i-1] + 120
             return round(aqi)
 
     return 500
@@ -33,7 +33,7 @@ def calculate_aqi_pm10(pm10):
 
     for i in range(1, len(c)):
         if pm10 <= c[i]:
-            aqi = ((iaqi[i] - iaqi[i-1]) / (c[i] - c[i-1])) * (pm10 - c[i-1]) + iaqi[i-1] +50
+            aqi = ((iaqi[i] - iaqi[i-1]) / (c[i] - c[i-1])) * (pm10 - c[i-1]) + iaqi[i-1] + 70
             return round(aqi)
 
     return 500    
@@ -55,21 +55,21 @@ for message in consumer:
     aqi_pm10 = calculate_aqi_pm10(pm10)
     print(aqi_pm10)
     
-    if(aqi_pm25 > aqi_pm10):
+    if aqi_pm25 > aqi_pm10:
         processed_data = {
-        'aqi': aqi_pm25,
-        'glavni': "pm25"
+                'aqi': aqi_pm25,
+                'glavni': "PM2.5"
         }
     
     else:
         processed_data = {
-        'aqi': aqi_pm10,
-        'glavni': "pm10"
+                'aqi': aqi_pm10,
+                'glavni': "PM10"
         }
 
     
 
-    producer.send(output_topic, value=processed_data)
+    producer.send(output_topic, value= processed_data)
     producer.flush()
 
 
