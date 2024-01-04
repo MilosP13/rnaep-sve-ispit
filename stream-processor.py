@@ -21,7 +21,7 @@ def calculate_aqi_pm25(pm2_5):
 
     for i in range(1, len(c)):
         if pm2_5 <= c[i]:
-            aqi = ((iaqi[i] - iaqi[i-1]) / (c[i] - c[i-1])) * (pm2_5 - c[i-1]) + iaqi[i-1] + 120
+            aqi = ((iaqi[i] - iaqi[i-1]) / (c[i] - c[i-1])) * (pm2_5 - c[i-1]) + iaqi[i-1] + 60
             return round(aqi)
 
     return 500
@@ -33,7 +33,7 @@ def calculate_aqi_pm10(pm10):
 
     for i in range(1, len(c)):
         if pm10 <= c[i]:
-            aqi = ((iaqi[i] - iaqi[i-1]) / (c[i] - c[i-1])) * (pm10 - c[i-1]) + iaqi[i-1] + 70
+            aqi = ((iaqi[i] - iaqi[i-1]) / (c[i] - c[i-1])) * (pm10 - c[i-1]) + iaqi[i-1] + 40
             return round(aqi)
 
     return 500    
